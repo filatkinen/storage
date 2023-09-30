@@ -3,16 +3,18 @@ package storage
 import "fmt"
 
 type FileStorage struct {
-	Name string
-	Data []byte
+	Name  string
+	Data  []byte
+	Inode int
 }
 
-func NewFileStorage(name string, data []byte) *FileStorage {
+func NewFileStorage(name string, data []byte, i int) *FileStorage {
 	return &FileStorage{
-		Name: name,
-		Data: data,
+		Name:  name,
+		Data:  data,
+		Inode: i,
 	}
 }
-func (f *FileStorage) stringer() string {
-	return fmt.Sprintf("file:(%s,%s)", f.Name, f.Data)
+func (f *FileStorage) String() string {
+	return fmt.Sprintf("file:(%s,%s,%d)", f.Name, f.Data, f.Inode)
 }
